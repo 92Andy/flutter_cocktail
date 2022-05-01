@@ -5,7 +5,12 @@ abstract class HomeState {}
 
 class LoadingHomeState extends HomeState {}
 
-class LoadedHomeState extends HomeState {}
+class LoadedHomeState extends HomeState {} //Todo: return
+
+class LoadingRandomCocktailHomeState extends HomeState {}
+
+class LoadedRandomCocktailHomeState extends HomeState {
+} //Todo: return random cocktail
 
 class ErrorHomeState extends HomeState {
   ErrorHomeState({
