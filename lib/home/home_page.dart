@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_cocktail/home/cubit/home_cubit.dart';
 import 'package:flutter_cocktail/shared/glass_morphism.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,9 +16,12 @@ class HomePage extends StatelessWidget {
           colors: [Colors.white, Colors.grey.shade300],
         ),
       ),
-      child: const Scaffold(
+      child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: _HomeView(),
+        body: BlocProvider(
+          create: (context) => HomeCubit(),
+          child: const _HomeView(),
+        ),
       ),
     );
   }
@@ -32,7 +37,7 @@ class _HomeView extends StatelessWidget {
         const _BackgroundImage(),
         Padding(
           padding: const EdgeInsets.only(
-            top: 55,
+            top: 100,
             bottom: 40,
             right: 30,
             left: 30,
@@ -40,7 +45,7 @@ class _HomeView extends StatelessWidget {
           child: Column(
             children: const [
               _Title(),
-              SizedBox(height: 40),
+              SizedBox(height: 50),
               _SearchBar(),
             ],
           ),
