@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cocktail/shared/glass_morphism.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class _HomeView extends StatelessWidget {
           child: Column(
             children: const [
               _Title(),
-              SizedBox(height: 30),
+              SizedBox(height: 40),
               _SearchBar(),
             ],
           ),
@@ -54,12 +55,20 @@ class _SearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.grey.withOpacity(0.4),
+    return const GlassMorphism(
+      child: Center(
+        child: TextField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            prefixIcon: Icon(
+              Icons.search,
+              color: Colors.grey,
+            ),
+            hintText: 'Search...',
+            hintStyle:
+                TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+          ),
+        ),
       ),
     );
   }
