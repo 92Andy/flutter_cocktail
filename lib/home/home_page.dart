@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cocktail/home/cubit/home_cubit.dart';
-import 'package:flutter_cocktail/shared/glass_morphism.dart';
+import 'package:flutter_cocktail/home/widgets/background_image.dart';
+import 'package:flutter_cocktail/home/widgets/home_title.dart';
+import 'package:flutter_cocktail/home/widgets/search_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -34,7 +36,7 @@ class _HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const _BackgroundImage(),
+        const BackgroundImage(),
         Padding(
           padding: const EdgeInsets.only(
             top: 100,
@@ -44,81 +46,13 @@ class _HomeView extends StatelessWidget {
           ),
           child: Column(
             children: const [
-              _Title(),
+              HomeTitle(),
               SizedBox(height: 50),
-              _SearchBar(),
+              SearchBar(),
             ],
           ),
         ),
       ],
-    );
-  }
-}
-
-class _SearchBar extends StatelessWidget {
-  const _SearchBar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const GlassMorphism(
-      child: Center(
-        child: TextField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            prefixIcon: Icon(
-              Icons.search,
-              color: Colors.grey,
-            ),
-            hintText: 'Search...',
-            hintStyle:
-                TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _Title extends StatelessWidget {
-  const _Title({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: const [
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            'Your',
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            'next Cocktail',
-            style: TextStyle(fontSize: 25),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _BackgroundImage extends StatelessWidget {
-  const _BackgroundImage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Align(
-      alignment: Alignment.topRight,
-      child: Image(
-        height: 300,
-        image: AssetImage('assets/palm_tree.png'),
-      ),
     );
   }
 }
