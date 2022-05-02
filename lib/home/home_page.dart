@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cocktail/home/cubit/home_cubit.dart';
 import 'package:flutter_cocktail/home/widgets/background_image.dart';
+import 'package:flutter_cocktail/home/widgets/cards/big_cocktail_card.dart';
 import 'package:flutter_cocktail/home/widgets/home_title.dart';
 import 'package:flutter_cocktail/home/widgets/search_bar.dart';
 
@@ -41,18 +41,19 @@ class _HomeView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(
             top: 100,
-            bottom: 40,
             right: 30,
             left: 30,
           ),
-          child: Column(
-            children: const [
-              HomeTitle(),
-              SizedBox(height: 50),
-              SearchBar(), //Todo: search callback should be added
-              SizedBox(height: 50),
-              RandomCocktail(), //Todo: get and add random cocktail + refresh callback
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: const [
+                HomeTitle(),
+                SizedBox(height: 50),
+                SearchBar(), //Todo: search callback should be added
+                SizedBox(height: 50),
+                RandomCocktail(), //Todo: get and add random cocktail + refresh callback
+              ],
+            ),
           ),
         ),
       ],
@@ -89,34 +90,6 @@ class RandomCocktail extends StatelessWidget {
         const SizedBox(height: 20),
         const BigCocktailCard(),
       ],
-    );
-  }
-}
-
-class BigCocktailCard extends StatelessWidget {
-  const BigCocktailCard({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250,
-      child: CachedNetworkImage(
-        imageUrl:
-            'https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg',
-        imageBuilder: (context, imageProvider) => Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: imageProvider,
-              fit: BoxFit.fill,
-            ),
-            borderRadius: BorderRadius.circular(20),
-          ),
-        ),
-        placeholder: (context, url) =>
-            const Center(child: CircularProgressIndicator()),
-        errorWidget: (context, url, error) =>
-            const Center(child: Icon(Icons.error)),
-      ),
     );
   }
 }

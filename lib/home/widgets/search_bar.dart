@@ -16,8 +16,10 @@ class SearchBar extends StatelessWidget {
               color: Colors.grey,
             ),
             hintText: 'Search...',
-            hintStyle:
-                TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+            hintStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+            ),
           ),
         ),
       ),
