@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
+  const BottomNavBar({
+    Key? key,
+    required this.iconTapped,
+  }) : super(key: key);
+
+  final Function(int) iconTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -29,22 +34,26 @@ class BottomNavBar extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               IconButton(
-                onPressed: null,
-                icon: Icon(Icons.home),
+                onPressed: () => iconTapped(0),
+                icon: const Icon(Icons.home),
+                color: Colors.grey,
               ),
               IconButton(
-                onPressed: null,
-                icon: Icon(Icons.search),
+                onPressed: () => iconTapped(1),
+                icon: const Icon(Icons.search),
+                color: Colors.grey,
               ),
               IconButton(
-                onPressed: null,
-                icon: Icon(Icons.star_outline),
+                onPressed: () => iconTapped(1),
+                icon: const Icon(Icons.star_outline),
+                color: Colors.grey,
               ),
               IconButton(
-                onPressed: null,
-                icon: Icon(Icons.settings),
+                onPressed: () => iconTapped(1),
+                icon: const Icon(Icons.settings),
+                color: Colors.grey,
               ),
             ],
           ),
