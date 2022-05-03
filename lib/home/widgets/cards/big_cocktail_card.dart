@@ -19,6 +19,14 @@ class BigCocktailCard extends StatelessWidget {
               fit: BoxFit.fill,
             ),
             borderRadius: BorderRadius.circular(30),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0, 10),
+                spreadRadius: -5,
+                blurRadius: 10,
+              ),
+            ],
           ),
           child: Stack(
             children: [
