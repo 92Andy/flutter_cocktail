@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_cocktail/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:flutter_cocktail/home/cubit/home_cubit.dart';
-import 'package:flutter_cocktail/home/widgets/background_image.dart';
 import 'package:flutter_cocktail/home/widgets/cards/big_cocktail_card.dart';
 import 'package:flutter_cocktail/home/widgets/home_title.dart';
 
@@ -18,7 +16,6 @@ class HomePage extends StatelessWidget {
         create: (context) => HomeCubit(),
         child: const _HomeView(),
       ),
-      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }
@@ -28,29 +25,24 @@ class _HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        const BackgroundImage(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: SingleChildScrollView(
-            child: Column(
-              children: const [
-                SizedBox(height: 100),
-                HomeTitle(),
-                //SearchBar(), //Todo: search callback should be added
-                SizedBox(height: 50),
-                RandomCocktail(),
-                SizedBox(height: 30),
-                RandomCocktail(), //Todo: get and add random cocktail + refresh callback
-                SizedBox(height: 30),
-                RandomCocktail(),
-                SizedBox(height: 100),
-              ],
-            ),
-          ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: SingleChildScrollView(
+        child: Column(
+          children: const [
+            SizedBox(height: 120),
+            HomeTitle(),
+            //SearchBar(), //Todo: search callback should be added
+            SizedBox(height: 50),
+            RandomCocktail(),
+            SizedBox(height: 30),
+            RandomCocktail(), //Todo: get and add random cocktail + refresh callback
+            SizedBox(height: 30),
+            RandomCocktail(),
+            SizedBox(height: 100),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
