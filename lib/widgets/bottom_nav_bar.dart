@@ -4,9 +4,11 @@ class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
     Key? key,
     required this.iconTapped,
+    required this.currentIndex,
   }) : super(key: key);
 
   final Function(int) iconTapped;
+  final int currentIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -35,27 +37,70 @@ class BottomNavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(
-                onPressed: () => iconTapped(0),
-                icon: const Icon(Icons.home),
-                color: Colors.grey,
+              _BottomNavBarIconItem(
+                currentActiveIndex: currentIndex,
+                itemIndex: 0,
+                iconData: Icons.home,
+                onTap: iconTapped,
               ),
-              IconButton(
-                onPressed: () => iconTapped(1),
-                icon: const Icon(Icons.search),
-                color: Colors.grey,
+              _BottomNavBarIconItem(
+                currentActiveIndex: currentIndex,
+                itemIndex: 1,
+                iconData: Icons.search,
+                onTap: iconTapped,
               ),
-              IconButton(
-                onPressed: () => iconTapped(1),
-                icon: const Icon(Icons.star_outline),
-                color: Colors.grey,
+              _BottomNavBarIconItem(
+                currentActiveIndex: currentIndex,
+                itemIndex: 2,
+                iconData: Icons.star_outline,
+                onTap: iconTapped,
               ),
-              IconButton(
-                onPressed: () => iconTapped(1),
-                icon: const Icon(Icons.settings),
-                color: Colors.grey,
+              _BottomNavBarIconItem(
+                currentActiveIndex: currentIndex,
+                itemIndex: 3,
+                iconData: Icons.settings,
+                onTap: iconTapped,
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _BottomNavBarIconItem extends StatelessWidget {
+  const _BottomNavBarIconItem({
+    Key? key,
+    required this.currentActiveIndex,
+    required this.itemIndex,
+    required this.iconData,
+    required this.onTap,
+  }) : super(key: key);
+
+  final int itemIndex;
+  final int currentActiveIndex;
+  final IconData iconData;
+  final Function(int) onTap;
+
+  bool isActive() => currentActiveIndex == itemIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      shape: isActive()
+          ? const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            )
+          : null,
+      color: isActive() ? Colors.grey.withOpacity(.5) : Colors.transparent,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: InkWell(
+          onTap: () => onTap(itemIndex),
+          child: Icon(
+            iconData,
+            color: isActive() ? Colors.white : Colors.grey,
           ),
         ),
       ),

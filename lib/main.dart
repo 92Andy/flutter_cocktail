@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cocktail/favorites/favorites_page.dart';
 import 'package:flutter_cocktail/search/search_page.dart';
+import 'package:flutter_cocktail/settings/settings_page.dart';
 
 import 'widgets/bottom_nav_bar.dart';
 import 'home/home_page.dart';
@@ -34,6 +36,8 @@ class _MainPageState extends State<MainPage> {
   final listOfPages = <Widget>[
     const HomePage(),
     const SearchPage(),
+    const FavoritesPage(),
+    const SettingsPage(),
   ];
 
   @override
@@ -42,6 +46,7 @@ class _MainPageState extends State<MainPage> {
       extendBody: true,
       backgroundColor: Colors.transparent,
       bottomNavigationBar: BottomNavBar(
+        currentIndex: _currentPageIndex,
         iconTapped: (int index) => setState(() {
           _currentPageIndex = index;
         }),
