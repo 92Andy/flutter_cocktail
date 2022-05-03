@@ -5,7 +5,6 @@ import 'package:flutter_cocktail/home/cubit/home_cubit.dart';
 import 'package:flutter_cocktail/home/widgets/background_image.dart';
 import 'package:flutter_cocktail/home/widgets/cards/big_cocktail_card.dart';
 import 'package:flutter_cocktail/home/widgets/home_title.dart';
-import 'package:flutter_cocktail/home/widgets/search_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
