@@ -19,7 +19,7 @@ class BottomNavBar extends StatelessWidget {
         right: 20,
       ),
       child: Container(
-        height: 50,
+        height: 60,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -33,7 +33,7 @@ class BottomNavBar extends StatelessWidget {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -94,10 +94,12 @@ class _BottomNavBarIconItem extends StatelessWidget {
             )
           : null,
       color: isActive() ? Colors.grey.withOpacity(.5) : Colors.transparent,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: SizedBox(
+        height: 50,
+        width: 50,
         child: InkWell(
           onTap: () => onTap(itemIndex),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
           child: Icon(
             iconData,
             color: isActive() ? Colors.white : Colors.grey,
