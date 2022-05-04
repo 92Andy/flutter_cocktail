@@ -69,7 +69,7 @@ class BottomNavBar extends StatelessWidget {
   }
 }
 
-class _BottomNavBarIconItem extends StatelessWidget {
+class _BottomNavBarIconItem extends StatefulWidget {
   const _BottomNavBarIconItem({
     Key? key,
     required this.currentActiveIndex,
@@ -83,29 +83,43 @@ class _BottomNavBarIconItem extends StatelessWidget {
   final IconData iconData;
   final Function(int) onTap;
 
-  bool isActive() => currentActiveIndex == itemIndex;
+  @override
+  State<_BottomNavBarIconItem> createState() => _BottomNavBarIconItemState();
+}
+
+class _BottomNavBarIconItemState extends State<_BottomNavBarIconItem> {
+  bool isActive() => widget.currentActiveIndex == widget.itemIndex;
+  double minSize = 30, maxSize = 50;
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      shape: isActive()
-          ? const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-            )
-          : null,
-      color: isActive() ? Colors.grey.withOpacity(.5) : Colors.transparent,
-      child: SizedBox(
-        height: 50,
-        width: 50,
-        child: InkWell(
-          onTap: () => onTap(itemIndex),
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-          child: Icon(
-            iconData,
-            color: isActive() ? Colors.white : Colors.grey,
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        AnimatedContainer(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color:
+                isActive() ? Colors.grey.withOpacity(.5) : Colors.transparent,
+          ),
+          height: isActive() ? maxSize : minSize,
+          width: isActive() ? maxSize : minSize,
+          duration: const Duration(milliseconds: 250),
+          child: Center(
+            child: Icon(
+              widget.iconData,
+              color: isActive() ? Colors.white : Colors.grey,
+            ),
           ),
         ),
-      ),
+        SizedBox(
+          height: maxSize,
+          width: maxSize,
+          child: GestureDetector(
+            onTap: () => widget.onTap(widget.itemIndex),
+          ),
+        ),
+      ],
     );
   }
 }
