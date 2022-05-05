@@ -7,7 +7,6 @@ abstract class Languages {
   // HomePage
   String get homePageBoldPartTitle;
   String get homePageNormalPartTitle;
-
   String get randomCocktailTitle;
 
   // SearchPage
