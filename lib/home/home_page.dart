@@ -59,7 +59,7 @@ class RandomCocktail extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              Languages.of(context)!.randomCocktailTitle,
+              Languages.of(context).randomCocktailTitle,
               style: const TextStyle(
                 color: Colors.grey,
                 fontWeight: FontWeight.bold,

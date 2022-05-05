@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cocktail/localization/languages.dart';
 
 class HomeTitle extends StatelessWidget {
   const HomeTitle({Key? key}) : super(key: key);
@@ -6,12 +7,12 @@ class HomeTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
+      children: [
         Align(
           alignment: Alignment.topLeft,
           child: Text(
-            'Your',
-            style: TextStyle(
+            Languages.of(context).homePageBoldPartTitle,
+            style: const TextStyle(
               fontSize: 30,
               fontWeight: FontWeight.bold,
             ),
@@ -20,8 +21,8 @@ class HomeTitle extends StatelessWidget {
         Align(
           alignment: Alignment.topLeft,
           child: Text(
-            'next Cocktail',
-            style: TextStyle(fontSize: 25),
+            Languages.of(context).homePageNormalPartTitle,
+            style: const TextStyle(fontSize: 25),
           ),
         ),
       ],

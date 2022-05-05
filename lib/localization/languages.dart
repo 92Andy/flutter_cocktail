@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class Languages {
-  static Languages? of(BuildContext context) =>
-      Localizations.of<Languages>(context, Languages);
+  static Languages of(BuildContext context) =>
+      Localizations.of<Languages>(context, Languages)!;
 
   // HomePage
   String get homePageBoldPartTitle;
