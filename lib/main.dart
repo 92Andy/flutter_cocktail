@@ -32,13 +32,20 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _currentPageIndex = 0;
+  int currentPageIndex = 0;
   final listOfPages = <Widget>[
     const HomePage(),
     const SearchPage(),
     const FavoritesPage(),
     const SettingsPage(),
   ];
+  late PageController pageController;
+
+  @override
+  void initState() {
+    pageController = PageController(initialPage: 0);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +53,24 @@ class _MainPageState extends State<MainPage> {
       extendBody: true,
       backgroundColor: Colors.transparent,
       bottomNavigationBar: BottomNavBar(
-        currentIndex: _currentPageIndex,
+        currentIndex: currentPageIndex,
         iconTapped: (int index) => setState(() {
-          _currentPageIndex = index;
+          currentPageIndex = index;
+          pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeIn,
+          );
         }),
       ),
       body: Stack(
         children: [
           const BackgroundImage(),
-          listOfPages.elementAt(_currentPageIndex),
+          PageView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: pageController,
+            children: listOfPages,
+          ),
         ],
       ),
     );
