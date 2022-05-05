@@ -4,16 +4,16 @@ import 'package:flutter_cocktail/home/home_page.dart';
 import 'package:flutter_cocktail/search/search_page.dart';
 import 'package:flutter_cocktail/settings/settings_page.dart';
 import 'package:flutter_cocktail/widgets/background_image.dart';
-import 'package:flutter_cocktail/widgets/bottom_nav_bar.dart';
+import 'package:flutter_cocktail/bottom_navigation/widgets/bottom_nav_bar.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+class BottomNavigationPage extends StatefulWidget {
+  const BottomNavigationPage({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<BottomNavigationPage> createState() => _BottomNavigationPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _BottomNavigationPageState extends State<BottomNavigationPage> {
   int currentPageIndex = 0;
   final listOfPages = <Widget>[
     const HomePage(),

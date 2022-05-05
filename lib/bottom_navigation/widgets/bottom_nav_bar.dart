@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cocktail/bottom_navigation/widgets/bottom_nav_bar_icon_item.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
@@ -37,25 +38,25 @@ class BottomNavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _BottomNavBarIconItem(
+              BottomNavBarIconItem(
                 currentActiveIndex: currentIndex,
                 itemIndex: 0,
                 iconData: Icons.home,
                 onTap: iconTapped,
               ),
-              _BottomNavBarIconItem(
+              BottomNavBarIconItem(
                 currentActiveIndex: currentIndex,
                 itemIndex: 1,
                 iconData: Icons.search,
                 onTap: iconTapped,
               ),
-              _BottomNavBarIconItem(
+              BottomNavBarIconItem(
                 currentActiveIndex: currentIndex,
                 itemIndex: 2,
                 iconData: Icons.star_outline,
                 onTap: iconTapped,
               ),
-              _BottomNavBarIconItem(
+              BottomNavBarIconItem(
                 currentActiveIndex: currentIndex,
                 itemIndex: 3,
                 iconData: Icons.settings,
@@ -65,61 +66,6 @@ class BottomNavBar extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _BottomNavBarIconItem extends StatefulWidget {
-  const _BottomNavBarIconItem({
-    Key? key,
-    required this.currentActiveIndex,
-    required this.itemIndex,
-    required this.iconData,
-    required this.onTap,
-  }) : super(key: key);
-
-  final int itemIndex;
-  final int currentActiveIndex;
-  final IconData iconData;
-  final Function(int) onTap;
-
-  @override
-  State<_BottomNavBarIconItem> createState() => _BottomNavBarIconItemState();
-}
-
-class _BottomNavBarIconItemState extends State<_BottomNavBarIconItem> {
-  bool isActive() => widget.currentActiveIndex == widget.itemIndex;
-  double minSize = 30, maxSize = 50;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        AnimatedContainer(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color:
-                isActive() ? Colors.grey.withOpacity(.5) : Colors.transparent,
-          ),
-          height: isActive() ? maxSize : minSize,
-          width: isActive() ? maxSize : minSize,
-          duration: const Duration(milliseconds: 250),
-          child: Center(
-            child: Icon(
-              widget.iconData,
-              color: isActive() ? Colors.white : Colors.grey,
-            ),
-          ),
-        ),
-        SizedBox(
-          height: maxSize,
-          width: maxSize,
-          child: GestureDetector(
-            onTap: () => widget.onTap(widget.itemIndex),
-          ),
-        ),
-      ],
     );
   }
 }

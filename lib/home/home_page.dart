@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cocktail/home/cubit/home_cubit.dart';
 import 'package:flutter_cocktail/home/widgets/cards/big_cocktail_card.dart';
 import 'package:flutter_cocktail/home/widgets/home_title.dart';
+import 'package:flutter_cocktail/localization/languages.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -56,16 +57,16 @@ class RandomCocktail extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
+          children: [
             Text(
-              'Random cocktail',
-              style: TextStyle(
+              Languages.of(context)!.randomCocktailTitle,
+              style: const TextStyle(
                 color: Colors.grey,
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
               ),
             ),
-            IconButton(
+            const IconButton(
               padding: EdgeInsets.zero,
               constraints: BoxConstraints(),
               onPressed: null, //Todo: refresh cocktail
