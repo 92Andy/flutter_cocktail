@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cocktail/bottom_navigation/bottom_navigation_page.dart';
+import 'package:flutter_cocktail/injectable/injectable.dart';
 import 'package:flutter_cocktail/localization/app_localizations_delegate.dart';
-import 'package:flutter_cocktail/localization/locale_constants.dart';
+import 'package:flutter_cocktail/localization/services/locale_service.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  configureDependencies();
   runApp(const CocktailApp());
 }
 
@@ -31,7 +34,7 @@ class _CocktailAppState extends State<CocktailApp> {
 
   @override
   void didChangeDependencies() async {
-    LocaleConstants.getLocale().then((locale) {
+    getIt<LocaleService>().getLocale().then((locale) {
       setState(() {
         _locale = locale;
       });
