@@ -1,32 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cocktail/main.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// Todo: convert to a services and inject via GetIt
-class LocaleConstants {
-  static String prefSelectedLanguageCode = "SelectedLanguageCode";
+@singleton
+class LocaleService {
+  LocaleService() {
+    initPreferences();
+  }
 
-  static Future<Locale> setLocale(String languageCode) async {
-    final preferences = await SharedPreferences.getInstance();
+  String prefSelectedLanguageCode = "SelectedLanguageCode";
+  late SharedPreferences preferences;
+
+  Future<void> initPreferences() async {
+    preferences = await SharedPreferences.getInstance();
+  }
+
+  Future<Locale> setLocale(String languageCode) async {
     await preferences.setString(prefSelectedLanguageCode, languageCode);
     return _locale(languageCode);
   }
 
-  static Future<Locale> getLocale() async {
-    final preferences = await SharedPreferences.getInstance();
+  Future<Locale> getLocale() async {
     String languageCode =
         preferences.getString(prefSelectedLanguageCode) ?? "en";
     return _locale(languageCode);
   }
 
-  static Locale _locale(String languageCode) {
+  Locale _locale(String languageCode) {
     return languageCode.isNotEmpty
         ? Locale(languageCode, '')
         : const Locale('en', '');
   }
 
-  static void changeLanguage(
-      BuildContext context, String selectedLanguageCode) async {
+  void changeLanguage(BuildContext context, String selectedLanguageCode) async {
     var _locale = await setLocale(selectedLanguageCode);
     CocktailApp.setLocale(context, _locale);
   }
