@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_cocktail/bottom_navigation/widgets/bottom_nav_bar_icon_item.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -31,11 +29,13 @@ main() {
           tester.widget<AnimatedContainer>(find.byType(AnimatedContainer));
       expect(animatedContainer.constraints!.biggest, const Size(30, 30));
 
-      final tmp = find.byType(AnimatedContainer);
+      //final tmp = find.byType(AnimatedContainer);
 
       await tester.tap(stackFinder.last);
       await tester.pump(const Duration(milliseconds: 500));
       expect(currentActiveIndex, 1);
+
+      //final size = tester.getSize(stackFinder);
 
       expect(animatedContainer.constraints!.biggest, const Size(50, 50));
 
