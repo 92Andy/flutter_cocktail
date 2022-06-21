@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cocktail/bottom_navigation/widgets/bottom_nav_bar_icon_item.dart';
+import 'package:flutter_cocktail/bottom_navigation/widgets/animated_bottom_nav_bar_icon_item.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
@@ -38,25 +38,25 @@ class BottomNavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              BottomNavBarIconItem(
+              AnimatedBottomNavBarIconItem(
                 currentActiveIndex: currentIndex,
                 itemIndex: 0,
                 iconData: Icons.home,
                 onTap: iconTapped,
               ),
-              BottomNavBarIconItem(
+              AnimatedBottomNavBarIconItem(
                 currentActiveIndex: currentIndex,
                 itemIndex: 1,
                 iconData: Icons.search,
                 onTap: iconTapped,
               ),
-              BottomNavBarIconItem(
+              AnimatedBottomNavBarIconItem(
                 currentActiveIndex: currentIndex,
                 itemIndex: 2,
                 iconData: Icons.star_outline,
                 onTap: iconTapped,
               ),
-              BottomNavBarIconItem(
+              AnimatedBottomNavBarIconItem(
                 currentActiveIndex: currentIndex,
                 itemIndex: 3,
                 iconData: Icons.settings,

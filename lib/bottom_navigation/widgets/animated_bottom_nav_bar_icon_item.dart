@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BottomNavBarIconItem extends StatefulWidget {
-  const BottomNavBarIconItem({
+class AnimatedBottomNavBarIconItem extends StatefulWidget {
+  const AnimatedBottomNavBarIconItem({
     Key? key,
     required this.currentActiveIndex,
     required this.itemIndex,
@@ -15,10 +15,12 @@ class BottomNavBarIconItem extends StatefulWidget {
   final Function(int) onTap;
 
   @override
-  State<BottomNavBarIconItem> createState() => _BottomNavBarIconItemState();
+  State<AnimatedBottomNavBarIconItem> createState() =>
+      _AnimatedBottomNavBarIconItemState();
 }
 
-class _BottomNavBarIconItemState extends State<BottomNavBarIconItem> {
+class _AnimatedBottomNavBarIconItemState
+    extends State<AnimatedBottomNavBarIconItem> {
   bool isActive() => widget.currentActiveIndex == widget.itemIndex;
   double minSize = 30, maxSize = 50;
 
