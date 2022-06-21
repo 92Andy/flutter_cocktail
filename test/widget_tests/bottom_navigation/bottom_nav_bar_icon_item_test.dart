@@ -1,47 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cocktail/bottom_navigation/widgets/bottom_nav_bar_icon_item.dart';
+import 'package:flutter_cocktail/bottom_navigation/widgets/animated_bottom_nav_bar_icon_item.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 main() {
-  testWidgets(
-    'BottomNavBarIconItem changes by tap the current active index and become active',
-    (WidgetTester tester) async {
-      var currentActiveIndex = 0;
-      onTap(int i) {
-        currentActiveIndex = i;
-      }
+  group('AnimatedBottomNavBarIconItem', () {
+    Widget wrapWithMaterialApp(AnimatedBottomNavBarIconItem navBarIcon) =>
+        MaterialApp(home: navBarIcon);
 
-      await tester.pumpWidget(
-        MaterialApp(
-          home: BottomNavBarIconItem(
-            currentActiveIndex: currentActiveIndex,
-            itemIndex: 1,
-            iconData: Icons.home,
-            onTap: onTap,
-          ),
-        ),
-      );
-      await tester.pumpAndSettle();
-      final stackFinder = find.byType(Stack);
-      expect(stackFinder, findsOneWidget);
+    AnimatedBottomNavBarIconItem getInactiveNavBarIcon() =>
+        AnimatedBottomNavBarIconItem(
+          currentActiveIndex: 0,
+          itemIndex: 1,
+          iconData: Icons.home,
+          onTap: (_) {},
+        );
 
-      final animatedContainer =
-          tester.widget<AnimatedContainer>(find.byType(AnimatedContainer));
-      expect(animatedContainer.constraints!.biggest, const Size(30, 30));
+    testWidgets('should be shown', (WidgetTester tester) async {
+      //initialize
+      final navBarIcon = getInactiveNavBarIcon();
 
-      //final tmp = find.byType(AnimatedContainer);
+      //act
+      await tester.pumpWidget(wrapWithMaterialApp(navBarIcon));
 
-      await tester.tap(stackFinder.last);
-      await tester.pump(const Duration(milliseconds: 500));
-      expect(currentActiveIndex, 1);
+      //expect
+      expect(find.byType(AnimatedBottomNavBarIconItem), findsOneWidget);
+    });
 
-      //final size = tester.getSize(stackFinder);
+    testWidgets(
+        'should contain a Stack with AnimatedContainer and SizedBox inside',
+        (WidgetTester tester) async {
+      //initialize
+      final navBarIcon = getInactiveNavBarIcon();
 
-      expect(animatedContainer.constraints!.biggest, const Size(50, 50));
+      //act
+      await tester.pumpWidget(wrapWithMaterialApp(navBarIcon));
+      final stackWidget = find.byType(Stack);
 
-      final animatedContainerBoxDecoration =
-          animatedContainer.decoration as BoxDecoration;
-      expect(animatedContainerBoxDecoration.color, Colors.grey.withOpacity(.5));
-    },
-  );
+      //expect
+      expect(find.byType(Stack), findsOneWidget);
+      expect(find.byType(AnimatedContainer), findsOneWidget);
+      //expect(find.byType(SizedBox), findsOneWidget);
+    });
+
+    /*testWidgets(
+        'inactive state should contain a BoxDecoration with transparent color',
+        (WidgetTester tester) async {
+      //initialize
+      final navBarIcon = getInactiveNavBarIcon();
+
+      //act
+      await tester.pumpWidget(wrapWithMaterialApp(navBarIcon));
+      final foundWidget = tester.widget<AnimatedBottomNavBarIconItem>(
+          find.byType(AnimatedBottomNavBarIconItem));
+
+      //expect
+      expect(foundWidget.)
+    });*/
+  });
 }
